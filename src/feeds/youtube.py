@@ -8,8 +8,6 @@ class YoutubeFeed:
         self.channel_url = self.URL + channel_id
         self.last_run = last_run
         self.keywords = keywords
-        if not keywords:
-            self.keywords = list()
 
     def parse_feed(self):
         feed = parse(self.channel_url)
@@ -18,8 +16,9 @@ class YoutubeFeed:
         for video in feed['entries']:
             dt_upload = datetime.fromisoformat(video['published'])
             print(f'Date video : {dt_upload}\nDate seuil : {self.last_run}\n\n')
-            if dt_upload > self.last_run: # and (any(keyword in video["title"] for keyword in self.keywords)):
-                video_feed.append({"title" : video["title"],"url" : video["link"]})
+            if (dt_upload > self.last_run):
+                if any(keyword in video["title"] for keyword in self.keywords):
+                    video_feed.append({"title" : video["title"],"url" : video["link"],"date_published" : video['published']})
             
         return video_feed
 

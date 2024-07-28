@@ -3,186 +3,51 @@
         {
             "support": "Apple Music",
             "artists": [
-                {
-                    "artist": "Booba",
-                    "id": "26485617",
-                    "tags": [
-                        "rap",
-                        "fr"
-                    ]
-                },
-                {
-                    "artist": "David Guetta",
-                    "id": "5557599",
-                    "tags": [
-                        "electro",
-                        "fr"
-                    ]
-                },
-                {
-                    "artist": "Justice",
-                    "id": "",
-                    "tags": [
-                        "electro",
-                        "fr"
-                    ]
-                },
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Dua Lipa","id": "","tags": ["electro","fr"]},
-                {"artist": "Damso","id": "","tags": ["electro","fr"]},
-                {"artist": "Nekfeu","id": "","tags": ["electro","fr"]},
+                {"artist": "Booba","id": "26485617","tags": ["rap","fr"]},
+                {"artist": "David Guetta","id": "5557599","tags": ["electro","fr"]},
+                {"artist": "Justice","id": "","tags": ["electro","fr"]},
+                {"artist": "Gorillaz","id": "","tags": ["pop","uk"]},
+                {"artist": "Dua Lipa","id": "","tags": ["pop","uk"]},
+                {"artist": "Damso","id": "","tags": ["rap","fr"]},
+                {"artist": "Nekfeu","id": "","tags": ["rap","fr"]},
                 {"artist": "Bon Entendeur","id": "","tags": ["electro","fr"]},
                 {"artist": "DJ Snake","id": "","tags": ["electro","fr"]},
                 {"artist": "Polo & Pan","id": "","tags": ["electro","fr"]},
-                {"artist": "Disiz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]},
-                {"artist": "Gorillaz","id": "","tags": ["electro","fr"]}
+                {"artist": "Disiz","id": "","tags": ["rap","fr"]},
+                {"artist": "Billie Eilish","id": "1065981054","tags": ["pop","us"]}
             ]
         },
         {
             "support": "YouTube",
             "channels": [
-                {
-                    "channel": "Nowtech",
-                    "id": "UCVwG9JHqGLfEO-4TkF-lf2g",
-                    "tags": [
-                        "tech"
-                    ]
-                },
-                {
-                    "channel": "LoKan Sardari",
-                    "id": "UCaHolOYkfcTdC0vTFAywzXw",
-                    "tags": [
-                        "tech",
-                        "apple"
-                    ]
-                },
-                {
-                    "channel": "LoKan eXplore",
-                    "id": "UCYIQyNepJ0RutqcTR9i3-Hw",
-                    "tags": [
-                        "sport",
-                        "tech"
-                    ]
-                },
-                {
-                    "channel": "LoKan Studio",
-                    "id": "UC1F5QJFXcu1evMkYyXRGoaw",
-                    "tags": [
-                        "tech",
-                        "apple"
-                    ]
-                },
-                {
-                    "channel": "Tesla Therapy",
-                    "id": "UCYUuu-rOXCYzVr_gVkg_2Ow",
-                    "tags": [
-                        "tech",
-                        "tesla"
-                    ]
-                },
-                {
-                    "channel": "Shisheyu",
-                    "id": "UCFyHm4Zca54_Jj9MEb8NGKQ",
-                    "tags": [
-                        "videogames"
-                    ],
-                    "keywords": [
-                        "Isaac"
-                    ]
-                },
-                {
-                    "channel": "McFly & Carlito",
-                    "id": "UCDPK_MTu3uTUFJXRVcTJcEw",
-                    "tags": [
-                        "fun"
-                    ]
-                },
-                {
-                    "channel": "McFly & Carlito",
-                    "id": "UCDPK_MTu3uTUFJXRVcTJcEw",
-                    "tags": [
-                        "fun"
-                    ]
-                },
-                {
-                    "channel": "LittleJBeauty",
-                    "id": "UC7D-CZSEVuah4IxiSIPo8og",
-                    "tags": [
-                        "Enora"
-                    ]
-                },
-                {
-                    "channel": "Nightech",
-                    "id": "UCu6HC8ahaPWqqfSvic7nWyQ",
-                    "tags": [
-                        "tech"
-                    ]
-                },
-                {
-                    "channel": "Romain Molina",
-                    "id": "UCxfusAsd_n5AMFheiipyaCw",
-                    "tags": [
-                        "football"
-                    ]
-                },
-                {
-                    "channel": "Jokariz",
-                    "id": "UCtSNggS2fln1-a9FVL13g4g",
-                    "tags": [
-                        "business"
-                    ]
-                },
-                {
-                    "channel": "Bienvenue au cabinet",
-                    "id": "UCIIq-MNFUrlgmrW5pBdNedQ",
-                    "tags": [
-                        "comptabilité"
-                    ]
-                },
-                {
-                    "channel": "Cloudyhills",
-                    "id": "UCJAZvc_C5M4pR_SwK_0z0xg",
-                    "tags": [
-                        "Enora"
-                    ]
-                },
-                {
-                    "channel": "Casey Neistat",
-                    "id": "UCtinbF-Q-fVthA0qrFQTgXQ",
-                    "tags": [
-                        "tech",
-                        "dev perso"
-                    ]
-                }
+                {"channel": "Nowtech","id": "UCVwG9JHqGLfEO-4TkF-lf2g","tags": ["tech"]},
+                {"channel": "LoKan Sardari","id": "UCaHolOYkfcTdC0vTFAywzXw","tags": ["tech","apple"]},
+                {"channel": "LoKan eXplore","id": "UCYIQyNepJ0RutqcTR9i3-Hw","tags": ["sport","tech"]},
+                {"channel": "LoKan Studio","id": "UC1F5QJFXcu1evMkYyXRGoaw","tags": ["tech","apple"]},
+                {"channel": "Tesla Therapy","id": "UCYUuu-rOXCYzVr_gVkg_2Ow","tags": ["tech","tesla"]},
+                {"channel": "Shisheyu","id": "UCFyHm4Zca54_Jj9MEb8NGKQ","tags": ["videogames"],"keywords": ["Isaac"]},
+                {"channel": "McFly & Carlito","id": "UCDPK_MTu3uTUFJXRVcTJcEw","tags": ["fun"]},
+                {"channel": "McFly & Carlito","id": "UCDPK_MTu3uTUFJXRVcTJcEw","tags": ["fun"]},
+                {"channel": "LittleJBeauty","id": "UC7D-CZSEVuah4IxiSIPo8og","tags": ["Enora"]},
+                {"channel": "Nightech","id": "UCu6HC8ahaPWqqfSvic7nWyQ","tags": ["tech"]},
+                {"channel": "Romain Molina","id": "UCxfusAsd_n5AMFheiipyaCw","tags": ["sport"]},
+                {"channel": "Jokariz","id": "UCtSNggS2fln1-a9FVL13g4g","tags": ["business"]},
+                {"channel": "Bienvenue au cabinet","id": "UCIIq-MNFUrlgmrW5pBdNedQ","tags": ["comptabilité"]},
+                {"channel": "Cloudyhills","id": "UCJAZvc_C5M4pR_SwK_0z0xg","tags": ["Enora"]},
+                {"channel": "Casey Neistat","id": "UCtinbF-Q-fVthA0qrFQTgXQ","tags": ["tech","dev perso"]},
+                {"channel": "Zack Nani","id": "UCSJxne19pJyW7l7HjHM-LRg","tags": ["videogames","sport"]},
+                {"channel": "Roro Cuistot","id": "UCumXaFp7Wy5f86UHS-_k6vQ","tags": ["fun"]},
+                {"channel": "Casquette Verte","id": "UC_ub1_5c8V9hlQsCc1xNKhA","tags": ["sport","run"]},
+                {"channel": "TheiCollection","id": "UCaybrunQi8xWgPMgv1AYBHw","tags": ["tech"]},
+                {"channel": "turning the tables","id": "UCgmDCcn9oo7m9XCIfi8eavw","tags": ["music"]},
+                {"channel": "Amin & Hugo","id": "UC6mhWx2X7qeSpicErDH0Z2A","tags": ["music"]}
             ]
         },
         {
             "support": "Podcast",
             "podcasts": [
-                {
-                    "podcast": "Colinterview",
-                    "url": "https://anchor.fm/s/58c40bdc/podcast/rss",
-                    "tags": [
-                        "football"
-                    ]
-                },
-                {
-                    "podcast": "Speakeasy by /influx",
-                    "url": "https://feeds.acast.com/public/shows/628df9fa4d69b700130ba262",
-                    "tags": [
-                        "tech",
-                        "dev perso"
-                    ]
-                }
+                {"podcast": "Colinterview","url": "https://anchor.fm/s/58c40bdc/podcast/rss","tags": ["football"]},
+                {"podcast": "Speakeasy by /influx","url": "https://feeds.acast.com/public/shows/628df9fa4d69b700130ba262","tags": ["tech","dev perso"]}
             ]
         }
     ]
