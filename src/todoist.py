@@ -41,8 +41,8 @@ class TaskManager:
     def get_all_projects(self):
         return self.api.make_request(method='get', endpoint='projects')
     
-    def get_all_tasks(self):
-        return self.api.make_request(method='get', endpoint='tasks')
+    def get_all_tasks(self, session_id = None):
+        return self.api.make_request(method='get', endpoint='tasks', params={'session_id': session_id})
     
     def get_all_sections(self, project_id = None):
         return self.api.make_request(method='get', endpoint='sections', params={'project_id' : project_id})

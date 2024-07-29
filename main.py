@@ -8,12 +8,10 @@ import pprint
 from dotenv import load_dotenv
 import os
 
-# load_dotenv('.env')
+load_dotenv('.env')
 
 TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
 print(TODOIST_PERSONAL_TOKEN)
-# if not TODOIST_PERSONAL_TOKEN:
-#     raise ValueError("API_TOKEN not set in environment variables")
 
 FEEDS_FILE_PATH = 'feeds.json'
 # LAST_RUN = datetime.datetime.fromtimestamp(1700823521, pytz.UTC)
@@ -43,16 +41,21 @@ if __name__ == '__main__':
                             new_section = {'id' : s['id']}
                             break
                 for n in news:
-                    n['tags'] = artist['tags']
-                    n['artist'] = artist['artist']
-                    task_content = {
-                        'content': n['title'], 
-                        'section_id': new_section['id'], 
-                        'project_id': '2336934522',
-                        'labels': n['tags'], 
-                        'description' : f"{n['url']}\n{n['date_published']}"
-                    }
-                    new_task = todoist_task_manager.add_task(task_content)
+                    liste_tasks = todoist_task_manager.get_all_tasks(new_section['id'])
+                    for t in liste_tasks:
+                        if t['content'] == n['title']:
+                            flag_stop = True
+                    if not flag_stop:
+                        n['tags'] = artist['tags']
+                        n['artist'] = artist['artist']
+                        task_content = {
+                            'content': n['title'], 
+                            'section_id': new_section['id'], 
+                            'project_id': '2336934522',
+                            'labels': n['tags'], 
+                            'description' : f"{n['url']}\n{n['date_published']}"
+                        }
+                        new_task = todoist_task_manager.add_task(task_content)
         if f['support'] == 'YouTube':
             pass
 
