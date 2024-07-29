@@ -23,8 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # - name: Create .env file
-    #   run: echo "TODOIST_PERSONAL_TOKEN=${{ secrets.TODOIST_PERSONAL_TOKEN }}" > .env
+    - name: Create .env file
+      run: echo "TODOIST_PERSONAL_TOKEN=${{ secrets.TODOIST_PERSONAL_TOKEN }}" > .env
 
     - name: Run main.py
       run: python main.py
