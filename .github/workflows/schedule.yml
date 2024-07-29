@@ -30,3 +30,13 @@ jobs:
       run: python main.py
       env:
         TODOIST_PERSONAL_TOKEN: ${{secrets.TODOIST_PERSONAL_TOKEN}}  # Passe le token en tant que variable d'environnement
+
+    - name: Commit last_run.json
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add last_run.json
+        git commit -m "Update last_run.json [skip ci]"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
