@@ -11,6 +11,8 @@ import os
 load_dotenv()
 
 TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
+if not TODOIST_PERSONAL_TOKEN:
+    raise ValueError("API_TOKEN not set in environment variables")
 FEEDS_FILE_PATH = 'feeds.json'
 # LAST_RUN = datetime.datetime.fromtimestamp(1700823521, pytz.UTC)
 
