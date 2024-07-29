@@ -6,8 +6,10 @@ on:
   workflow_dispatch:  # Permet de déclencher manuellement le workflow
 
 jobs:
-  run-script:
+  run-on-windows:
     runs-on: windows-latest
+
+
 
     steps:
     - name: Checkout repository
