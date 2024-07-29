@@ -48,7 +48,7 @@ if __name__ == '__main__':
                         'section_id': new_section['id'], 
                         'project_id': '2336934522',
                         'labels': n['tags'], 
-                        'description' : f'{n['url']}\n{n['date_published']}'
+                        'description' : f"{n['url']}\n{n['date_published']}"
                     }
                     new_task = todoist_task_manager.add_task(task_content)
         if f['support'] == 'YouTube':
