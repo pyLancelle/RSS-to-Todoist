@@ -8,9 +8,10 @@ import pprint
 from dotenv import load_dotenv
 import os
 
-load_dotenv('.env')
+# load_dotenv('.env')
 
 TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
+print(TODOIST_PERSONAL_TOKEN)
 if not TODOIST_PERSONAL_TOKEN:
     raise ValueError("API_TOKEN not set in environment variables")
 

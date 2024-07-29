@@ -29,4 +29,4 @@ jobs:
     - name: Run main.py
       run: python main.py
       env:
-        TODOIST_PERSONAL_TOKEN: ${{ secrets.TODOIST_PERSONAL_TOKEN }}  # Passe le token en tant que variable d'environnement
+        TODOIST_PERSONAL_TOKEN: ${{secrets.TODOIST_PERSONAL_TOKEN}}  # Passe le token en tant que variable d'environnement
