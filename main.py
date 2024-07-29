@@ -8,7 +8,7 @@ import pprint
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv('.env')
 
 TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
 if not TODOIST_PERSONAL_TOKEN:
