@@ -41,8 +41,8 @@ class TaskManager:
     def get_all_projects(self):
         return self.api.make_request(method='get', endpoint='projects')
     
-    def get_all_tasks(self, session_id = None):
-        return self.api.make_request(method='get', endpoint='tasks', params={'session_id': session_id})
+    def get_all_tasks(self, section_id = None):
+        return self.api.make_request(method='get', endpoint='tasks', params={'section_id': section_id})
     
     def get_all_sections(self, project_id = None):
         return self.api.make_request(method='get', endpoint='sections', params={'project_id' : project_id})
@@ -51,9 +51,13 @@ class TaskManager:
         all_sections = self.get_all_sections(project_id)
         for section in all_sections:
             if section['name'] == section_name:
-                return None
+                return {'id' : section['id']}
         return self.api.make_request(method='post', endpoint='sections', data={'name': section_name, 'project_id': project_id})
 
     def add_task(self, content):
+        all_tasks = self.get_all_tasks(content['section_id'])
+        for t in all_tasks:
+            if t['content'] == content['content']:
+                return None
         self.api.make_request(method='post', endpoint='tasks', data=content)
         print(f'Task added: {content}')

@@ -22,5 +22,7 @@ class YoutubeFeed:
     def parse_feed(self):
         all_videos = list()
         for video in self.rss_feed['entries']:
-            all_videos.append(self._transform_feed(video))
+            new_video = self._transform_feed(video)
+            if new_video:
+                all_videos.append(new_video)
         return all_videos
