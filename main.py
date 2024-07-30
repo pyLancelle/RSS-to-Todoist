@@ -33,7 +33,6 @@ if __name__ == '__main__':
             # Loop through all the channels I have in 'feeds.json'
 
             for artist in f['artists']:
-                print(f'Checking : {artist['artist']}')
                 # Load the Apple Music feed parser
                 amf = AppleMusicFeed(artist_id=artist['id'], last_run=last_run)
 
@@ -60,7 +59,6 @@ if __name__ == '__main__':
             # Loop through all the channels I have in 'feeds.json'
 
             for channel in f['channels']:
-                print(f'Checking : {channel['channel']}')
                 # Load the YouTube feed parser
                 yt = YoutubeFeed(channel['id'], last_run, channel.get('keywords'))
 
