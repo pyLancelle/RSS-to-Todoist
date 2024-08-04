@@ -25,7 +25,7 @@
                 {"channel": "LoKan eXplore","id": "UCYIQyNepJ0RutqcTR9i3-Hw","tags": ["sport","tech"]},
                 {"channel": "LoKan Studio","id": "UC1F5QJFXcu1evMkYyXRGoaw","tags": ["tech","apple"]},
                 {"channel": "Tesla Therapy","id": "UCYUuu-rOXCYzVr_gVkg_2Ow","tags": ["tech","tesla"]},
-                {"channel": "Shisheyu","id": "UCFyHm4Zca54_Jj9MEb8NGKQ","tags": ["videogames"],"keywords": ["Isaac"]},
+                {"channel": "Shisheyu","id": "UCFyHm4Zca54_Jj9MEb8NGKQ","tags": ["videogames"],"keywords": ["Isaac","Balatro"]},
                 {"channel": "McFly & Carlito","id": "UCDPK_MTu3uTUFJXRVcTJcEw","tags": ["fun"]},
                 {"channel": "McFly & Carlito","id": "UCDPK_MTu3uTUFJXRVcTJcEw","tags": ["fun"]},
                 {"channel": "LittleJBeauty","id": "UC7D-CZSEVuah4IxiSIPo8og","tags": ["Enora"]},
@@ -42,7 +42,8 @@
                 {"channel": "turning the tables","id": "UCgmDCcn9oo7m9XCIfi8eavw","tags": ["music"]},
                 {"channel": "Wiloo","id": "UCIJZA6SJ3JjvuOZgYPYOHnA","tags": ["sport"]},
                 {"channel": "Amin & Hugo","id": "UC6mhWx2X7qeSpicErDH0Z2A","tags": ["music"]},
-                {"channel": "Léna Situations","id": "UCDkl5M0WVaddTWE4rr2cSeA","tags": ["fun","lifestyle"]}
+                {"channel": "Léna Situations","id": "UCDkl5M0WVaddTWE4rr2cSeA","tags": ["fun","lifestyle"]},
+                {"channel": "Mister MV","id": "UCus9EeXDcLaCJhVXYd6PJcg","tags": ["videogames"], "keywords": ["Isaac","Balatro"]}
             ]
         },
         {
