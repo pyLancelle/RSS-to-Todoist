@@ -18,9 +18,9 @@ class TodoistApi:
 
         try:
             if method == 'get':
-                response = requests.get(url, headers=self.auth.headers, params=params, timeout=20)
+                response = requests.get(url, headers=self.auth.headers, params=params, timeout=60)
             elif method == 'post':
-                response = requests.post(url, headers=self.auth.headers, json=data, timeout=20)
+                response = requests.post(url, headers=self.auth.headers, json=data, timeout=60)
             else:
                 raise ValueError(f"Unsupported HTTP method: {method}")
 

@@ -7,7 +7,6 @@ import datetime
 import pytz
 from dotenv import load_dotenv
 import os
-import yaml
 
 CONFIGURATION_FILEPATH = 'configuration.yaml'
 
@@ -22,6 +21,8 @@ if __name__ == '__main__':
     # Create variables
     FEEDS_FILEPATH = config['feeds_filepath']
     LAST_RUN = config['last_run']
+    APPLEMUSIC_PROJECT_ID = config['todoist']['music_project_id']
+    YOUTUBE_PROJECT_ID = config['todoist']['youtube_project_id']
 
     # Load elements
     feeds = load_json(FEEDS_FILEPATH)
@@ -35,14 +36,14 @@ if __name__ == '__main__':
             'feed_class': AppleMusicFeed,
             'entity_key': 'artists',
             'name_key': 'artist',
-            'project_id': config['todoist']['music_project_id'],
+            'project_id': APPLEMUSIC_PROJECT_ID,
             'published_date': 'date_published'
         },
         'YouTube': {
             'feed_class': YoutubeFeed,
             'entity_key': 'channels',
             'name_key': 'channel',
-            'project_id': config['todoist']['youtube_project_id'],
+            'project_id': YOUTUBE_PROJECT_ID,
             'published_date': 'date_published'
         }
     }
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     for f in feeds['feeds_type']:
         support = f['support']
         if support in feed_handlers:
-            # Loop through all the channels I have in 'feeds.json'
+            # Loop through all the entities I have in 'feeds.json'
             handler = feed_handlers[support]
             feed_class = handler['feed_class']
             entity_key = handler['entity_key']
@@ -78,6 +79,7 @@ if __name__ == '__main__':
 
                 # Parse feed
                 news = feed.parse_feed()
+                print(f'Found {len(news)} entries.')
 
                 for n in news:
                     # Prepare the task into a todoist Format
@@ -92,6 +94,4 @@ if __name__ == '__main__':
                     new_task = todoist.taskmanager.add_task(task_content)
                     print(f'Added : {task_content["content"]}')
 
-
-    config['last_run'] = datetime.datetime.now().timestamp()
     store_last_run(CONFIGURATION_FILEPATH, config)
