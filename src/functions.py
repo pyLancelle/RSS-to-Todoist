@@ -1,6 +1,7 @@
 import datetime
 import json
 import yaml
+import pytz
 
 def transform_date(date_str):
     # Convertir la chaîne de caractères en objet datetime
@@ -20,7 +21,17 @@ def load_config_yaml(yaml_path):
 def store_last_run(yaml_path, config):
     # Obtenez le timestamp actuel
     config['last_run'] = datetime.datetime.now().timestamp()
-    last_run_datetime = datetime.datetime.fromtimestamp(config['last_run'])
-    config['last_run_format'] = last_run_datetime.strftime('%Y-%m-%d %H:%M')
+
+    # Deal with UTC
+    # Convertissez le timestamp en un objet datetime en UTC
+    utc_datetime = datetime.datetime.fromtimestamp(config['last_run'], pytz.UTC)
+
+    # Convertissez l'objet datetime UTC en heure de Paris
+    paris_tz = pytz.timezone('Europe/Paris')
+    paris_datetime = utc_datetime.astimezone(paris_tz)
+
+    formatted_date = paris_datetime.strftime('%Y-%m-%d %H:%M')
+
+    config['last_run_format'] = formatted_date
     with open(yaml_path, 'w') as file:
         yaml.dump(config, file, default_flow_style=False)
