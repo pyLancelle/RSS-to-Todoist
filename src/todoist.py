@@ -24,6 +24,13 @@ class TodoistApi:
             else:
                 raise ValueError(f"Unsupported HTTP method: {method}")
 
+            print(f'Request URL: {url}')
+            print(f'Request Headers: {self.auth.headers}')
+            print(f'Request Params: {params}')
+            print(f'Request Data: {data}')
+            print(f'Response Status Code: {response.status_code}')
+            print(f'Response Text: {response.text}')
+
             response.raise_for_status()
             if response.status_code:
                 pass
@@ -51,13 +58,9 @@ class TaskManager:
         all_sections = self.get_all_sections(project_id)
         for section in all_sections:
             if section['name'] == section_name:
+                print(f'Section {section_name} already exists\n')
                 return {'id' : section['id']}
         return self.api.make_request(method='post', endpoint='sections', data={'name': section_name, 'project_id': project_id})
 
     def add_task(self, content):
-        all_tasks = self.get_all_tasks(content['section_id'])
-        for t in all_tasks:
-            if t['content'] == content['content']:
-                return None
-        self.api.make_request(method='post', endpoint='tasks', data=content)
-        print(f'Task added: {content}')
+        return self.api.make_request(method='post', endpoint='tasks', data=content)
