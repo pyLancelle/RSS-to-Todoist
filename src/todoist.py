@@ -57,3 +57,9 @@ class TaskManager:
 
     def add_task(self, content):
         return self.api.make_request(method='post', endpoint='tasks', data=content)
+    
+class Todoist:
+    def __init__(self, personal_access_token):
+        self.auth = TodoistAuth(personal_access_token)
+        self.api = TodoistApi(self.auth)
+        self.taskmanager = TaskManager(self.api)

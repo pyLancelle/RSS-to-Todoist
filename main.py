@@ -1,17 +1,16 @@
 from src.feeds.applemusic import AppleMusicFeed
 from src.feeds.youtube import YoutubeFeed
-from src.todoist import TodoistAuth, TodoistApi, TaskManager
+from src.todoist import TodoistAuth, TodoistApi, TaskManager, Todoist
 import json
 import datetime
 import pytz
-import pprint
 from dotenv import load_dotenv
 import os
 
 load_dotenv('.env')
 
 TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
-print(TODOIST_PERSONAL_TOKEN)
+
 FEEDS_FILE_PATH = 'feeds.json'
 # LAST_RUN = datetime.datetime.fromtimestamp(1700823521, pytz.UTC)
 
@@ -30,10 +29,7 @@ if __name__ == '__main__':
     last_run = datetime.datetime.fromtimestamp(json.load(lr)['last_run'], pytz.UTC)
 
     # Todoist initialization
-    # TODO : simplifier ce truc en faisant un TodoistOrchestrator, truc du style, c'est dégueu d'avoir 3 initialisations.
-    todoist_auth = TodoistAuth(TODOIST_PERSONAL_TOKEN)
-    todoist_api = TodoistApi(todoist_auth)
-    todoist_task_manager = TaskManager(todoist_api)
+    todoist = Todoist(TODOIST_PERSONAL_TOKEN)
 
     feed_handlers = {
         'Apple Music': {
@@ -84,8 +80,8 @@ if __name__ == '__main__':
                         'description': f"{n['url']}"
                     }
 
-                    # Load the task
-                    new_task = todoist_task_manager.add_task(task_content)
+                    # Add task
+                    new_task = todoist.taskmanager.add_task(task_content)
                     print(f'Added : {task_content["content"]}')
 
     with open('last_run.json', 'w') as f:
