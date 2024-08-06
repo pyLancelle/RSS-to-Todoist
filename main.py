@@ -1,32 +1,31 @@
 from src.feeds.applemusic import AppleMusicFeed
 from src.feeds.youtube import YoutubeFeed
-from src.todoist import TodoistAuth, TodoistApi, TaskManager, Todoist
+from src.todoist import Todoist
+from src.functions import transform_date, load_json, load_config_yaml, store_last_run
 import json
 import datetime
 import pytz
 from dotenv import load_dotenv
 import os
+import yaml
 
-load_dotenv('.env')
-
-TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
-
-FEEDS_FILE_PATH = 'feeds.json'
-# LAST_RUN = datetime.datetime.fromtimestamp(1700823521, pytz.UTC)
-
-def transform_date(date_str):
-    # Convertir la chaîne de caractères en objet datetime
-    date_obj = datetime.datetime.fromisoformat(date_str)
-    formatted_date = date_obj.strftime("%Y-%m-%d")
-    return str(formatted_date)
-
+CONFIGURATION_FILEPATH = 'configuration.yaml'
 
 if __name__ == '__main__':
-    f = open('feeds.json')
-    feeds = json.load(f)
+    # Load the environment and get the TODOIST_PERSONAL_TOKEN
+    load_dotenv('.env')
+    TODOIST_PERSONAL_TOKEN = os.getenv('TODOIST_PERSONAL_TOKEN')
 
-    lr = open('last_run.json')
-    last_run = datetime.datetime.fromtimestamp(json.load(lr)['last_run'], pytz.UTC)
+    # Load the YAML config
+    config = load_config_yaml(CONFIGURATION_FILEPATH)
+
+    # Create variables
+    FEEDS_FILEPATH = config['feeds_filepath']
+    LAST_RUN = config['last_run']
+
+    # Load elements
+    feeds = load_json(FEEDS_FILEPATH)
+    last_run = datetime.datetime.fromtimestamp(LAST_RUN, pytz.UTC)
 
     # Todoist initialization
     todoist = Todoist(TODOIST_PERSONAL_TOKEN)
@@ -36,21 +35,21 @@ if __name__ == '__main__':
             'feed_class': AppleMusicFeed,
             'entity_key': 'artists',
             'name_key': 'artist',
-            'project_id': '2337470474',
+            'project_id': config['todoist']['music_project_id'],
             'published_date': 'date_published'
         },
         'YouTube': {
             'feed_class': YoutubeFeed,
             'entity_key': 'channels',
             'name_key': 'channel',
-            'project_id': '2337470496',
+            'project_id': config['todoist']['youtube_project_id'],
             'published_date': 'date_published'
         }
     }
 
     for f in feeds['feeds_type']:
         support = f['support']
-        if f['support'] in feed_handlers:
+        if support in feed_handlers:
             # Loop through all the channels I have in 'feeds.json'
             handler = feed_handlers[support]
             feed_class = handler['feed_class']
@@ -61,28 +60,38 @@ if __name__ == '__main__':
 
             for entity in f[entity_key]:
                 print(f'Analyzing {entity[name_key]}')
-                # Initialize the feed parser
                 if support == 'Apple Music':
-                    feed = feed_class(artist_id=entity['id'], last_run=last_run)
+                    feed = feed_class(
+                        artist_id=entity['id'], 
+                        last_run=last_run
+                    )
                 elif support == 'YouTube':
-                    feed = feed_class(entity['id'], last_run, entity.get('keywords'))
+                    feed = feed_class(
+                        channel_id=entity['id'], 
+                        last_run=last_run, 
+                        keywords=entity.get('keywords')
+                    )
+                elif support == 'Podcast':
+                    pass
+                else:
+                    pass
 
                 # Parse feed
                 news = feed.parse_feed()
 
                 for n in news:
-                    date_str = transform_date(n.get(published_date))
-                    # Prepare the task
+                    # Prepare the task into a todoist Format
                     task_content = {
-                        'content': f'{date_str} - {entity[name_key]} - {n['title']}',
+                        'content': f'{n['title']}',
                         'project_id': project_id,
                         'labels': [entity[name_key]],
                         'description': f"{n['url']}"
                     }
 
-                    # Add task
+                    # Add task in Todoist
                     new_task = todoist.taskmanager.add_task(task_content)
                     print(f'Added : {task_content["content"]}')
 
-    with open('last_run.json', 'w') as f:
-        json.dump({'last_run': datetime.datetime.now().timestamp()}, f)
+
+    config['last_run'] = datetime.datetime.now().timestamp()
+    store_last_run(CONFIGURATION_FILEPATH, config)

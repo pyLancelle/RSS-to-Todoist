@@ -1,0 +1,10 @@
+feeds_filepath: feeds.json
+last_run: 1722984945.159445
+last_run_format: 2024-08-07 00:55
+logs_filepath: logs.json
+project_name: RSS to Todoist
+todoist:
+  music_project_id: 2337470474
+  podcast_project_id: 2336934528
+  youtube_project_id: 2337470496
+version: 1.0
