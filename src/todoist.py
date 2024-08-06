@@ -24,13 +24,6 @@ class TodoistApi:
             else:
                 raise ValueError(f"Unsupported HTTP method: {method}")
 
-            print(f'Request URL: {url}')
-            print(f'Request Headers: {self.auth.headers}')
-            print(f'Request Params: {params}')
-            print(f'Request Data: {data}')
-            print(f'Response Status Code: {response.status_code}')
-            print(f'Response Text: {response.text}')
-
             response.raise_for_status()
             if response.status_code:
                 pass

@@ -35,73 +35,58 @@ if __name__ == '__main__':
     todoist_api = TodoistApi(todoist_auth)
     todoist_task_manager = TaskManager(todoist_api)
 
-    # feed_handlers = {
-    #     'Apple Music': {
-    #         'feed_class': AppleMusicFeed,
-    #         'entity_key': 'artists',
-    #         'name_key': 'artist',
-    #         'project_id': '2336934522'
-    #     },
-    #     'YouTube': {
-    #         'feed_class': YoutubeFeed,
-    #         'entity_key': 'channels',
-    #         'name_key': 'channel',
-    #         'project_id': '2336934512'
-    #     }
-    # }
+    feed_handlers = {
+        'Apple Music': {
+            'feed_class': AppleMusicFeed,
+            'entity_key': 'artists',
+            'name_key': 'artist',
+            'project_id': '2337470474',
+            'published_date': 'date_published'
+        },
+        'YouTube': {
+            'feed_class': YoutubeFeed,
+            'entity_key': 'channels',
+            'name_key': 'channel',
+            'project_id': '2337470496',
+            'published_date': 'date_published'
+        }
+    }
 
     for f in feeds['feeds_type']:
-        # Apple Music
-        if f['support'] == 'Apple Music':
+        support = f['support']
+        if f['support'] in feed_handlers:
             # Loop through all the channels I have in 'feeds.json'
+            handler = feed_handlers[support]
+            feed_class = handler['feed_class']
+            entity_key = handler['entity_key']
+            name_key = handler['name_key']
+            project_id = handler['project_id']
+            published_date = handler['published_date']
 
-            for artist in f['artists']:
-                print(f'Analyse de {artist['artist']}')
-                # Load the Apple Music feed parser
-                amf = AppleMusicFeed(artist_id=artist['id'], last_run=last_run)
+            for entity in f[entity_key]:
+                print(f'Analyzing {entity[name_key]}')
+                # Initialize the feed parser
+                if support == 'Apple Music':
+                    feed = feed_class(artist_id=entity['id'], last_run=last_run)
+                elif support == 'YouTube':
+                    feed = feed_class(entity['id'], last_run, entity.get('keywords'))
 
                 # Parse feed
-                news = amf.parse_feed()
+                news = feed.parse_feed()
 
                 for n in news:
-                    date_str = transform_date(n['date_published'])
+                    date_str = transform_date(n.get(published_date))
                     # Prepare the task
                     task_content = {
-                        'content': f'{date_str} - {artist['artist']} - {n['title']}',
-                        'project_id': '2337470474',
-                        'labels': artist['tags'], 
-                        'description' : n['url']
+                        'content': f'{date_str} - {entity[name_key]} - {n['title']}',
+                        'project_id': project_id,
+                        'labels': [entity[name_key]],
+                        'description': f"{n['url']}"
                     }
 
                     # Load the task
                     new_task = todoist_task_manager.add_task(task_content)
+                    print(f'Added : {task_content["content"]}')
 
-        if f['support'] == 'YouTube':
-            # Loop through all the channels I have in 'feeds.json'
-
-            for channel in f['channels']:
-                print(f'Analyse de {channel['channel']}')
-                # Load the YouTube feed parser
-                yt = YoutubeFeed(channel['id'], last_run, channel.get('keywords'))
-
-                # Parse feed
-                news = yt.parse_feed()
-
-                for n in news:
-                    # Format date
-                    date_str = transform_date(n['date_published'])
-                    # Prepare the task
-                    task_content = {
-                        'content': f'{date_str} - {channel['channel']} - {n['title']}',
-                        'project_id': '2337470496',
-                        'labels': channel['tags'], 
-                        'description' : f"{n['url']}"
-                    }
-
-                    # Load the task
-                    new_task = todoist_task_manager.add_task(task_content)
-
-        with open('last_run.json', 'w') as f:
-            json.dump({'last_run': datetime.datetime.now().timestamp()}, f)
-
-
+    with open('last_run.json', 'w') as f:
+        json.dump({'last_run': datetime.datetime.now().timestamp()}, f)
