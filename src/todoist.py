@@ -41,8 +41,8 @@ class TaskManager:
     def get_all_projects(self):
         return self.api.make_request(method='get', endpoint='projects')
     
-    def get_all_tasks(self, section_id = None):
-        return self.api.make_request(method='get', endpoint='tasks', params={'section_id': section_id})
+    def get_all_tasks(self, project_id = None):
+        return self.api.make_request(method='get', endpoint='tasks', params={'project_id': project_id})
     
     def get_all_sections(self, project_id = None):
         return self.api.make_request(method='get', endpoint='sections', params={'project_id' : project_id})
@@ -54,9 +54,17 @@ class TaskManager:
                 print(f'Section {section_name} already exists\n')
                 return {'id' : section['id']}
         return self.api.make_request(method='post', endpoint='sections', data={'name': section_name, 'project_id': project_id})
+    
+    def _task_already_exists(self, task_content, project_id):
+        tasks_in_project = self.get_all_tasks(project_id=project_id)
+        for t in tasks_in_project:
+            if t['content'] == task_content:
+                return True
+        return False
 
     def add_task(self, content):
-        return self.api.make_request(method='post', endpoint='tasks', data=content)
+        if not self._task_already_exists(content['content'], content['project_id']):
+            return self.api.make_request(method='post', endpoint='tasks', data=content)
     
 class Todoist:
     def __init__(self, personal_access_token):
