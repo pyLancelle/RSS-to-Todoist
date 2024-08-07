@@ -63,7 +63,9 @@ class TaskManager:
         return False
 
     def add_task(self, content):
-        if not self._task_already_exists(content['content'], content['project_id']):
+        exists = self._task_already_exists(content['content'], content['project_id'])
+        if not exists:
+            print(f'Added : {content['content']}')
             return self.api.make_request(method='post', endpoint='tasks', data=content)
     
 class Todoist:

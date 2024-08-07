@@ -1,8 +1,7 @@
 from src.feeds.applemusic import AppleMusicFeed
 from src.feeds.youtube import YoutubeFeed
 from src.todoist import Todoist
-from src.functions import transform_date, load_json, load_config_yaml, store_last_run
-import json
+from src.functions import load_json, load_config_yaml, store_last_run
 import datetime
 import pytz
 from dotenv import load_dotenv
@@ -92,6 +91,6 @@ if __name__ == '__main__':
 
                     # Add task in Todoist
                     new_task = todoist.taskmanager.add_task(task_content)
-                    print(f'Added : {task_content["content"]}')
+                    
 
     store_last_run(CONFIGURATION_FILEPATH, config)
