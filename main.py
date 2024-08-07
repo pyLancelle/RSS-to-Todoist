@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
                 # Parse feed
                 news = feed.parse_feed()
-                print(f'Found {len(news)} entries.')
+                print(f'Found {len(news)}.')
 
                 for n in news:
                     # Prepare the task into a todoist Format
