@@ -14,10 +14,10 @@ class YoutubeFeed:
         dt_upload = datetime.fromisoformat(video['published'])
         if dt_upload > self.last_run:
             if self.keywords:
-                if any(keyword in video["title"] for keyword in self.keywords):
-                    return {"title" : video["title"],"url" : video["link"],"date_published" : video['published']}
+                if any(keyword.lower() in video["title"].lower() for keyword in self.keywords):
+                    return {"title" : video["title"], "url" : video["link"], "date_published" : video['published']}
             else:
-                return {"title" : video["title"],"url" : video["link"],"date_published" : video['published']}
+                return {"title" : video["title"], "url" : video["link"], "date_published" : video['published']}
         
     def parse_feed(self):
         all_videos = list()
