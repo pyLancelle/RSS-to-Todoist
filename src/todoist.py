@@ -67,6 +67,8 @@ class TaskManager:
         if not exists:
             print(f'Added : {content['content']}')
             return self.api.make_request(method='post', endpoint='tasks', data=content)
+        else:
+            print('Already loaded')
     
 class Todoist:
     def __init__(self, personal_access_token):
