@@ -1,6 +1,6 @@
 feeds_filepath: feeds.json
-last_run: 1744528013.662857
-last_run_format: 2025-04-13 09:06
+last_run: 1744531726.598685
+last_run_format: 2025-04-13 10:08
 logs_filepath: logs.json
 project_name: RSS to Todoist
 todoist:
