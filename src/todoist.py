@@ -65,7 +65,7 @@ class TaskManager:
     def add_task(self, content):
         exists = self._task_already_exists(content['content'], content['project_id'])
         if not exists:
-            print(f'Added : {content['content']}')
+            print(f"Added : {content['content']}")
             return self.api.make_request(method='post', endpoint='tasks', data=content)
         else:
             print('Already loaded')
