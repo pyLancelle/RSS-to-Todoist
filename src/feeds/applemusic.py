@@ -10,9 +10,23 @@ class AppleMusicFeed:
         self.rss_feed = parse(self.channel_url)
 
     def _transform_feed(self, video):
-        dt_upload = datetime.fromisoformat(video['published'])
+        """Transform a raw feed entry to a simplified structure.
+
+        Some entries might not contain a ``published`` field. In that case the
+        entry is ignored to avoid ``KeyError`` exceptions.
+        """
+
+        published = video.get('published') or video.get('updated')
+        if not published:
+            return None
+
+        dt_upload = datetime.fromisoformat(published)
         if dt_upload > self.last_run:
-            return {"title" : video["title"],"url" : video["link"],"date_published" : video['published']}
+            return {
+                "title": video.get("title"),
+                "url": video.get("link"),
+                "date_published": published,
+            }
         
     def parse_feed(self):
         all_videos = list()
