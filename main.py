@@ -83,10 +83,10 @@ if __name__ == '__main__':
                 for n in news:
                     # Prepare the task into a todoist Format
                     task_content = {
-                        'content': f'{n['title']}',
+                        'content': n["title"],
                         'project_id': project_id,
                         'labels': [entity[name_key]],
-                        'description': f"{n['url']}"
+                        'description': n["url"]
                     }
 
                     # Add task in Todoist
