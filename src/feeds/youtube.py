@@ -13,6 +13,8 @@ class YoutubeFeed:
     def _transform_feed(self, video):
         dt_upload = datetime.fromisoformat(video['published'])
         if dt_upload > self.last_run:
+            if "short" in video["link"].lower():
+                return None
             if self.keywords:
                 if any(keyword.lower() in video["title"].lower() for keyword in self.keywords):
                     return {"title" : video["title"], "url" : video["link"], "date_published" : video['published']}
